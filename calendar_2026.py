@@ -156,7 +156,9 @@ def create_calendar_pdf(lang=DEFAULT_LANG):
 
     # Создаем canvas
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    output_path = os.path.join(script_dir, output_filename)
+    output_dir = os.path.join(script_dir, "calendars")
+    os.makedirs(output_dir, exist_ok=True)
+    output_path = os.path.join(output_dir, output_filename)
     c = canvas.Canvas(output_path, pagesize=landscape(A3))
 
     # Рисуем клетки (только заполненные)

@@ -12,13 +12,13 @@ Pre-generated calendars available in 7 languages:
 
 | Language | Download |
 |----------|----------|
-| English | [calendar_2026_en.pdf](calendar_2026_en.pdf) |
-| Deutsch | [calendar_2026_de.pdf](calendar_2026_de.pdf) |
-| Français | [calendar_2026_fr.pdf](calendar_2026_fr.pdf) |
-| Русский | [calendar_2026_ru.pdf](calendar_2026_ru.pdf) |
-| Español | [calendar_2026_es.pdf](calendar_2026_es.pdf) |
-| Italiano | [calendar_2026_it.pdf](calendar_2026_it.pdf) |
-| Português | [calendar_2026_pt.pdf](calendar_2026_pt.pdf) |
+| English | [calendar_2026_en.pdf](calendars/calendar_2026_en.pdf) |
+| Deutsch | [calendar_2026_de.pdf](calendars/calendar_2026_de.pdf) |
+| Français | [calendar_2026_fr.pdf](calendars/calendar_2026_fr.pdf) |
+| Русский | [calendar_2026_ru.pdf](calendars/calendar_2026_ru.pdf) |
+| Español | [calendar_2026_es.pdf](calendars/calendar_2026_es.pdf) |
+| Italiano | [calendar_2026_it.pdf](calendars/calendar_2026_it.pdf) |
+| Português | [calendar_2026_pt.pdf](calendars/calendar_2026_pt.pdf) |
 
 ## Features
 
