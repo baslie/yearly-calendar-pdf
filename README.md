@@ -3,7 +3,7 @@
 Generate a **printable A3 wall calendar** with 365 boxes — one for each day of the year. Perfect for yearly planning, habit tracking, and goal visualization.
 
 <p align="center">
-  <img src="calendar_2026_ru.jpg" alt="Printable 365 day wall calendar for yearly planning and habit tracking" width="100%">
+  <img src="screenshot.jpg" alt="Printable 365 day wall calendar for yearly planning and habit tracking" width="100%">
 </p>
 
 ## Download Ready-to-Print PDFs
@@ -48,7 +48,7 @@ pip install reportlab
 python calendar_2026.py
 ```
 
-This will generate all 7 language versions. Then print on A3 paper.
+This generates all 7 language versions in the `calendars/` folder. Print on A3 paper.
 
 ## Customization
 
@@ -57,11 +57,6 @@ Edit settings at the top of `calendar_2026.py`:
 ```python
 YEAR = 2026
 
-MONTHS = [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-]
-
 COLS = 25          # Grid columns
 ROWS = 15          # Grid rows
 
@@ -69,21 +64,17 @@ COLOR_BORDER = "#000000"
 COLOR_TEXT = "#555555"
 ```
 
-### Language Examples
+### Adding a New Language
 
-**Russian:**
-```python
-MONTHS = ["янв.", "фев.", "мар.", "апр.", "май", "июн.", "июл.", "авг.", "сен.", "окт.", "ноя.", "дек."]
-```
+Add your language to the `LANGUAGES` dictionary:
 
-**German:**
 ```python
-MONTHS = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
-```
-
-**Spanish:**
-```python
-MONTHS = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"]
+LANGUAGES = {
+    "en": ["Jan", "Feb", "Mar", ...],
+    "de": ["Jan", "Feb", "Mär", ...],
+    # Add your language:
+    "pl": ["sty", "lut", "mar", "kwi", "maj", "cze", "lip", "sie", "wrz", "paź", "lis", "gru"],
+}
 ```
 
 ## Requirements
