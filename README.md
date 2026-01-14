@@ -1,69 +1,61 @@
-# 365 Days Wall Calendar
+# 365 Days Wall Calendar PDF Generator
 
-A simple Python script that generates a printable A3 wall calendar with 365 boxes — one for each day of the year.
+Generate a **printable A3 wall calendar** with 365 boxes — one for each day of the year. Perfect for yearly planning, habit tracking, and goal visualization.
 
-![Calendar Preview](calendar_2026.jpg)
+<p align="center">
+  <img src="calendar_2026_ru.jpg" alt="Printable 365 day wall calendar for yearly planning and habit tracking" width="100%">
+</p>
 
-## Why This Calendar?
+## Features
 
-Planning your year shouldn't require expensive tools or subscriptions. Print this minimalist calendar, hang it on your wall, and see your entire year at a glance.
+- **A3 printable format** (420×297mm) — fits standard poster frames
+- **365 numbered day boxes** — date, month, and day-of-year number (1-365)
+- **Minimalist design** — clean lines, readable fonts, lots of writing space
+- **Multi-language support** — easily customize month names for any language
+- **Customizable colors** — adjust borders and text colors to your preference
+- **Print-ready PDF output** — includes margins for easy printing
 
-**Perfect for:**
-- Habit tracking (mark each day you exercise, meditate, or learn)
-- Project deadlines and milestones
-- Countdown to important events
-- Daily journaling prompts
-- Visualizing your yearly progress
+## Use Cases
 
-## What You Get
-
-- **A3 format** (420×297mm) — large enough to write in, fits standard frames
-- **365 numbered boxes** — each shows the date, month, and day number (1-365)
-- **Clean minimal design** — thin borders, readable text, plenty of white space
-- **Print-ready PDF** — margins included for easy printing
+- **Habit tracking** — mark each day you exercise, read, meditate, or code
+- **Year-long project planning** — visualize deadlines and milestones at a glance
+- **Goal countdown** — track progress toward yearly goals
+- **Daily journaling** — use as a prompt for daily reflections
+- **Productivity tracking** — see your entire year of work on one page
 
 ## Quick Start
 
-1. Install the required library:
-   ```
-   pip install reportlab
-   ```
+```bash
+pip install reportlab
+python calendar_2026.py
+```
 
-2. Run the script:
-   ```
-   python calendar_2026.py
-   ```
-
-3. Print `calendar_2026.pdf` on A3 paper
+Then print `calendar_2026.pdf` on A3 paper.
 
 ## Customization
 
-Edit the settings at the top of `calendar_2026.py`:
+Edit settings at the top of `calendar_2026.py`:
 
 ```python
-# Year for the calendar
 YEAR = 2026
 
-# Month names (customize for your language)
 MONTHS = [
-    "янв.", "фев.", "мар.", "апр.", "май", "июн.",
-    "июл.", "авг.", "сен.", "окт.", "ноя.", "дек."
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ]
 
-# Grid layout (columns x rows)
-COLS = 25
-ROWS = 15
+COLS = 25          # Grid columns
+ROWS = 15          # Grid rows
 
-# Colors
-COLOR_BORDER = "#000000"    # Cell borders
-COLOR_TEXT = "#555555"      # Date text
+COLOR_BORDER = "#000000"
+COLOR_TEXT = "#555555"
 ```
 
 ### Language Examples
 
-**English:**
+**Russian:**
 ```python
-MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+MONTHS = ["янв.", "фев.", "мар.", "апр.", "май", "июн.", "июл.", "авг.", "сен.", "окт.", "ноя.", "дек."]
 ```
 
 **German:**
@@ -79,7 +71,7 @@ MONTHS = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", 
 ## Requirements
 
 - Python 3.6+
-- reportlab
+- [ReportLab](https://www.reportlab.com/)
 
 ## License
 
