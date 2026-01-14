@@ -65,7 +65,6 @@ def register_fonts():
     font_dir = os.path.join(script_dir, FONT_DIR)
 
     pdfmetrics.registerFont(TTFont('Roboto', os.path.join(font_dir, 'Roboto-Regular.ttf')))
-    pdfmetrics.registerFont(TTFont('Roboto-Light', os.path.join(font_dir, 'Roboto-Light.ttf')))
 
 
 def generate_days(year):
