@@ -3,7 +3,7 @@
 Generate a **printable A3 wall calendar** with 365 boxes — one for each day of the year. Perfect for yearly planning, habit tracking, and goal visualization.
 
 <p align="center">
-  <img src="screenshot.jpg" alt="Printable 365 day wall calendar for yearly planning and habit tracking" width="100%">
+  <img src="screenshot.png" alt="Printable 365 day wall calendar for yearly planning and habit tracking" width="100%">
 </p>
 
 ## Download Ready-to-Print PDFs
