@@ -81,4 +81,4 @@ MONTHS = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", 
 
 ## License
 
-MIT
+[MIT](LICENSE)
