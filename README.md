@@ -6,6 +6,20 @@ Generate a **printable A3 wall calendar** with 365 boxes — one for each day of
   <img src="calendar_2026_ru.jpg" alt="Printable 365 day wall calendar for yearly planning and habit tracking" width="100%">
 </p>
 
+## Download Ready-to-Print PDFs
+
+Pre-generated calendars available in 7 languages:
+
+| Language | Download |
+|----------|----------|
+| English | [calendar_2026_en.pdf](calendar_2026_en.pdf) |
+| Deutsch | [calendar_2026_de.pdf](calendar_2026_de.pdf) |
+| Français | [calendar_2026_fr.pdf](calendar_2026_fr.pdf) |
+| Русский | [calendar_2026_ru.pdf](calendar_2026_ru.pdf) |
+| Español | [calendar_2026_es.pdf](calendar_2026_es.pdf) |
+| Italiano | [calendar_2026_it.pdf](calendar_2026_it.pdf) |
+| Português | [calendar_2026_pt.pdf](calendar_2026_pt.pdf) |
+
 ## Features
 
 - **A3 printable format** (420×297mm) — fits standard poster frames
@@ -25,12 +39,16 @@ Generate a **printable A3 wall calendar** with 365 boxes — one for each day of
 
 ## Quick Start
 
+**Option 1:** Download a ready-to-print PDF from the table above.
+
+**Option 2:** Generate your own calendars:
+
 ```bash
 pip install reportlab
 python calendar_2026.py
 ```
 
-Then print `calendar_2026.pdf` on A3 paper.
+This will generate all 7 language versions. Then print on A3 paper.
 
 ## Customization
 

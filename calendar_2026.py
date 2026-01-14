@@ -20,14 +20,19 @@ import os
 # Year for the calendar
 YEAR = 2026
 
-# Output file name
-OUTPUT_FILENAME = "calendar_2026.pdf"
+# Language settings (code -> month names)
+LANGUAGES = {
+    "en": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "de": ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+    "fr": ["jan.", "fév.", "mars", "avr.", "mai", "juin", "juil.", "août", "sep.", "oct.", "nov.", "déc."],
+    "ru": ["янв.", "фев.", "мар.", "апр.", "май", "июн.", "июл.", "авг.", "сен.", "окт.", "ноя.", "дек."],
+    "es": ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"],
+    "it": ["gen", "feb", "mar", "apr", "mag", "giu", "lug", "ago", "set", "ott", "nov", "dic"],
+    "pt": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+}
 
-# Month names (customize for your language)
-MONTHS = [
-    "янв.", "фев.", "мар.", "апр.", "май", "июн.",
-    "июл.", "авг.", "сен.", "окт.", "ноя.", "дек."
-]
+# Default language (for single calendar generation)
+DEFAULT_LANG = "en"
 
 # Grid layout (columns x rows)
 COLS = 25
@@ -87,7 +92,7 @@ def generate_days(year):
     return days
 
 
-def draw_cell(c, x, y, width, height, day_data):
+def draw_cell(c, x, y, width, height, day_data, months):
     """
     Рисует одну клетку календаря.
 
@@ -96,6 +101,7 @@ def draw_cell(c, x, y, width, height, day_data):
         x, y: координаты левого нижнего угла клетки
         width, height: размеры клетки
         day_data: кортеж (номер_дня, число_месяца, индекс_месяца) или None
+        months: список названий месяцев
     """
     # Рисуем границу клетки
     c.setStrokeColor(HexColor(COLOR_BORDER))
@@ -111,7 +117,7 @@ def draw_cell(c, x, y, width, height, day_data):
     font_size = min(height * 0.18, width * 0.12)
 
     # Дата и месяц сверху слева
-    date_text = f"{day_of_month:02d} {MONTHS[month_index]}"
+    date_text = f"{day_of_month:02d} {months[month_index]}"
     c.setFont('Roboto', font_size)
     c.setFillColor(HexColor(COLOR_TEXT))
     c.drawString(x + CELL_PADDING, y + height - CELL_PADDING - font_size, date_text)
@@ -125,8 +131,14 @@ def draw_cell(c, x, y, width, height, day_data):
     c.drawString(text_x, text_y, day_number_text)
 
 
-def create_calendar_pdf(output_filename=OUTPUT_FILENAME):
-    """Создает PDF-календарь."""
+def create_calendar_pdf(lang=DEFAULT_LANG):
+    """Создает PDF-календарь для указанного языка."""
+
+    if lang not in LANGUAGES:
+        raise ValueError(f"Unsupported language: {lang}. Available: {list(LANGUAGES.keys())}")
+
+    months = LANGUAGES[lang]
+    output_filename = f"calendar_{YEAR}_{lang}.pdf"
 
     # Регистрируем шрифты
     register_fonts()
@@ -156,15 +168,24 @@ def create_calendar_pdf(output_filename=OUTPUT_FILENAME):
         x = MARGIN + col * cell_width
         y = PAGE_HEIGHT - MARGIN - (row + 1) * cell_height
 
-        draw_cell(c, x, y, cell_width, cell_height, day_data)
+        draw_cell(c, x, y, cell_width, cell_height, day_data, months)
 
     # Сохраняем PDF
     c.save()
-    print(f"PDF-календарь создан: {output_path}")
-    print(f"Формат: A3 (альбомная ориентация)")
-    print(f"Сетка: {COLS}x{ROWS}")
-    print(f"Ячеек: {len(days)}")
+    print(f"Created: {output_filename}")
+    return output_path
+
+
+def generate_all_calendars():
+    """Генерирует PDF-календари для всех языков."""
+    print(f"Generating {YEAR} calendars for {len(LANGUAGES)} languages...")
+    print(f"Format: A3 landscape, {COLS}x{ROWS} grid, 365 cells\n")
+
+    for lang in LANGUAGES:
+        create_calendar_pdf(lang)
+
+    print(f"\nDone! Generated {len(LANGUAGES)} PDF files.")
 
 
 if __name__ == "__main__":
-    create_calendar_pdf()
+    generate_all_calendars()
