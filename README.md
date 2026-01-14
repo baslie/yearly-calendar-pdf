@@ -2,6 +2,8 @@
 
 A simple Python script that generates a printable A3 wall calendar with 365 boxes — one for each day of the year.
 
+![Calendar Preview](calendar_2026.jpg)
+
 ## Why This Calendar?
 
 Planning your year shouldn't require expensive tools or subscriptions. Print this minimalist calendar, hang it on your wall, and see your entire year at a glance.
