@@ -23,7 +23,7 @@ Pre-generated calendars available in 7 languages:
 ## Features
 
 - **A3 printable format** (420×297mm) — fits standard poster frames
-- **365 numbered day boxes** — date, month, and day-of-year number (1-365)
+- **365 numbered day boxes** — date, month, day of week, and day-of-year number (1-365)
 - **Minimalist design** — clean lines, readable fonts, lots of writing space
 - **Multi-language support** — easily customize month names for any language
 - **Customizable colors** — adjust borders and text colors to your preference
