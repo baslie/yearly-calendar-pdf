@@ -31,6 +31,17 @@ LANGUAGES = {
     "pt": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
 }
 
+# Weekday names (Monday = 0, Sunday = 6)
+WEEKDAYS = {
+    "en": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    "de": ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+    "fr": ["lun", "mar", "mer", "jeu", "ven", "sam", "dim"],
+    "ru": ["пн", "вт", "ср", "чт", "пт", "сб", "вс"],
+    "es": ["lun", "mar", "mié", "jue", "vie", "sáb", "dom"],
+    "it": ["lun", "mar", "mer", "gio", "ven", "sab", "dom"],
+    "pt": ["seg", "ter", "qua", "qui", "sex", "sáb", "dom"],
+}
+
 # Default language (for single calendar generation)
 DEFAULT_LANG = "en"
 
@@ -45,7 +56,7 @@ MARGIN_MM = 15
 CELL_PADDING_MM = 0.5
 
 # Border line width
-LINE_WIDTH = 0.25
+LINE_WIDTH = 0.5
 
 # Colors
 COLOR_BORDER = "#000000"    # Black - cell borders
@@ -75,7 +86,7 @@ def register_fonts():
 def generate_days(year):
     """
     Генерирует список дней года.
-    Возвращает список кортежей: (номер_дня, число_месяца, индекс_месяца)
+    Возвращает список кортежей: (номер_дня, число_месяца, индекс_месяца, индекс_дня_недели)
     """
     days = []
     start_date = datetime.date(year, 1, 1)
@@ -85,14 +96,14 @@ def generate_days(year):
     day_number = 1
 
     while current <= end_date:
-        days.append((day_number, current.day, current.month - 1))
+        days.append((day_number, current.day, current.month - 1, current.weekday()))
         current += datetime.timedelta(days=1)
         day_number += 1
 
     return days
 
 
-def draw_cell(c, x, y, width, height, day_data, months):
+def draw_cell(c, x, y, width, height, day_data, months, weekdays):
     """
     Рисует одну клетку календаря.
 
@@ -100,8 +111,9 @@ def draw_cell(c, x, y, width, height, day_data, months):
         c: canvas объект
         x, y: координаты левого нижнего угла клетки
         width, height: размеры клетки
-        day_data: кортеж (номер_дня, число_месяца, индекс_месяца) или None
+        day_data: кортеж (номер_дня, число_месяца, индекс_месяца, индекс_дня_недели) или None
         months: список названий месяцев
+        weekdays: список названий дней недели
     """
     # Рисуем границу клетки
     c.setStrokeColor(HexColor(COLOR_BORDER))
@@ -111,7 +123,7 @@ def draw_cell(c, x, y, width, height, day_data, months):
     if day_data is None:
         return
 
-    day_number, day_of_month, month_index = day_data
+    day_number, day_of_month, month_index, weekday_index = day_data
 
     # Размеры шрифтов (адаптивные)
     font_size = min(height * 0.18, width * 0.12)
@@ -121,6 +133,11 @@ def draw_cell(c, x, y, width, height, day_data, months):
     c.setFont('Roboto', font_size)
     c.setFillColor(HexColor(COLOR_TEXT))
     c.drawString(x + CELL_PADDING, y + height - CELL_PADDING - font_size, date_text)
+
+    # День недели справа вверху
+    weekday_text = weekdays[weekday_index]
+    weekday_width = c.stringWidth(weekday_text, 'Roboto', font_size)
+    c.drawString(x + width - CELL_PADDING - weekday_width, y + height - CELL_PADDING - font_size, weekday_text)
 
     # Номер дня справа внизу (симметрично дате)
     day_number_text = str(day_number)
@@ -138,6 +155,7 @@ def create_calendar_pdf(lang=DEFAULT_LANG):
         raise ValueError(f"Unsupported language: {lang}. Available: {list(LANGUAGES.keys())}")
 
     months = LANGUAGES[lang]
+    weekdays = WEEKDAYS[lang]
     output_filename = f"calendar_{YEAR}_{lang}.pdf"
 
     # Регистрируем шрифты
@@ -170,7 +188,7 @@ def create_calendar_pdf(lang=DEFAULT_LANG):
         x = MARGIN + col * cell_width
         y = PAGE_HEIGHT - MARGIN - (row + 1) * cell_height
 
-        draw_cell(c, x, y, cell_width, cell_height, day_data, months)
+        draw_cell(c, x, y, cell_width, cell_height, day_data, months, weekdays)
 
     # Сохраняем PDF
     c.save()
